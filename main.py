@@ -122,7 +122,7 @@ class WakaInput:
     """WakaReadme Input Env Variables."""
 
     # constants
-    prefix_length: int = 16
+    prefix_length: int = 22
     graph_length: int = 25
 
     # mapped environment variables
@@ -345,9 +345,10 @@ def prep_content(stats: dict[str, Any], /):
         lang_time = str(lang["text"]) if wk_i.show_time else ""
         lang_ratio = float(lang["percent"])
         lang_bar = make_graph(wk_i.block_style, lang_ratio, wk_i.graph_length, lang_name)
+        prefix_length = wk_i.prefix_length
         contents += (
             f"{lang_name.ljust(pad_len)}   "
-            + f"{lang_time: <16}{lang_bar}   "
+            + f"{lang_time: <{prefix_length}}{lang_bar}   "
             + f"{lang_ratio:.2f}".zfill(5)
             + " %\n"
         )
